@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.10' // Make sure this matches the name you configured in Jenkins > Global Tool Configuration
+        maven 'Maven 3.9.10' // Must match what is configured in Jenkins
     }
 
     stages {
@@ -21,6 +21,11 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'mvn test'
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                }
             }
         }
 
