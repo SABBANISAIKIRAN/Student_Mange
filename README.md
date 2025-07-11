@@ -1,5 +1,5 @@
 git add .
-git commit -m "Test webhook trigger"
+git commit -m "Trigger CI with test case"
 git push origin main
 
 
