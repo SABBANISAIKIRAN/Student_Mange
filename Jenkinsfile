@@ -2,16 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.10'
+        jdk 'jdk18' // Matches the name from Global Tool Configuration
+        maven 'Maven 3.8.5' // Optional: only if Maven is configured in Jenkins
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git branch: 'main', url: 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 bat 'mvn clean install'
@@ -26,7 +21,7 @@ pipeline {
 
         stage('Archive JAR') {
             steps {
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
             }
         }
     }
