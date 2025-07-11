@@ -2,29 +2,25 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.10'   // ✅ Must match the Maven tool name in Jenkins
-    }
-
-    environment {
-        GIT_REPO = 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
+        maven 'Maven 3.9.10'  // ✅ Must match the Maven tool name in Jenkins Global Config
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: "${env.GIT_REPO}"
+                git branch: 'main', url: 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
