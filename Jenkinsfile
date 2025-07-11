@@ -5,12 +5,11 @@ pipeline {
         maven 'Maven 3.9.10' // ✅ Use exact name from Global Tool Config
     }
 
-    stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
-            }
-        }
+   stage('Clone Repository') {
+    steps {
+        git branch: 'main', url: 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
+    }
+}
 
         stage('Build') {
             steps {
