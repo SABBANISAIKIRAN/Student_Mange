@@ -2,14 +2,19 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.10' // ✅ Use exact name from Global Tool Config
+        maven 'Maven 3.9.10'   // ✅ Must match the Maven tool name in Jenkins
     }
 
-   stage('Clone Repository') {
-    steps {
-        git branch: 'main', url: 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
+    environment {
+        GIT_REPO = 'https://github.com/SABBANISAIKIRAN/Student_Mange.git'
     }
-}
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: "${env.GIT_REPO}"
+            }
+        }
 
         stage('Build') {
             steps {
@@ -25,7 +30,7 @@ pipeline {
 
         stage('Archive JAR') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
     }
