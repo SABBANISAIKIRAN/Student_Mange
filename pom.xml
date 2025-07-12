@@ -20,7 +20,7 @@
 
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>src/test/java</testSourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory> <!-- ✅ FIXED HERE -->
 
     <resources>
       <resource>
