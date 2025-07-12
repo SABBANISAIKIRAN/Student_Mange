@@ -19,16 +19,10 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>src</sourceDirectory> <!-- Java source files -->
-    
-    <!-- ✅ Let Maven use default src/test/java; no need to override -->
-    
+    <!-- ✅ Let Maven use its default structure -->
     <resources>
       <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
+        <directory>src/main/resources</directory>
       </resource>
     </resources>
 
